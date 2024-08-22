@@ -1,3 +1,4 @@
+import 'package:coco/mybanks.dart';
 import 'package:coco/mywallets.dart';
 import 'package:flutter/material.dart';
 void main() {
@@ -58,6 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
                 onPressed: (){
                   //ADD BANKS PAGE
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  const MyBanksPage()),
+                  );
                 },
                 child: const Text('My Banks')
             ),

@@ -16,6 +16,25 @@ class BankDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Sample transactions
+    final List<Map<String, String>> transactions = [
+      {
+        'name': 'Grocery Shopping',
+        'date': '2024-08-01',
+        'amount': '- \$50.00',
+      },
+      {
+        'name': 'Salary',
+        'date': '2024-08-05',
+        'amount': '+ \$2000.00',
+      },
+      {
+        'name': 'Electricity Bill',
+        'date': '2024-08-10',
+        'amount': '- \$150.00',
+      },
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bank Details"),
@@ -45,11 +64,37 @@ class BankDetailsPage extends StatelessWidget {
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 32.0),
+
+            // Transactions section
+            const Text(
+              "Transactions",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16.0),
+
+            // Display transactions
+            Expanded(
+              child: ListView.builder(
+                itemCount: transactions.length,
+                itemBuilder: (context, index) {
+                  final transaction = transactions[index];
+                  return Card(
+                    child: ListTile(
+                      title: Text(transaction['name']!),
+                      subtitle: Text(transaction['date']!),
+                      trailing: Text(transaction['amount']!),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            // Edit and Delete buttons
             ElevatedButton(
               onPressed: () {
                 // Add functionality to edit the bank details
               },
-              child: const Text("Add transaction"),
+              child: const Text("Add Transaction"),
             ),
             ElevatedButton(
               onPressed: () {

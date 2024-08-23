@@ -1,3 +1,4 @@
+import 'package:coco/walletdetails.dart';
 import 'package:flutter/material.dart';
 import 'addwallet.dart';
 class MyWalletsPage extends StatelessWidget{
@@ -20,13 +21,22 @@ Widget build(BuildContext context) {
               //Redirect to Add Wallet form
             }, child: const Text("Add Wallet"),
             ),
-            const Card(
+            InkWell(
+              onTap:(){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> const WalletDetailsPage(walletName: "walletName", walletType: "walletType", balance: 778))
+                );
+              },
+            child: const Card(
               child: SizedBox(
                 width: 100,
                 height: 100,
                 child: Text("Wallet Name"),
+
               ),
             ),
+            )
             ],
       )
     ),

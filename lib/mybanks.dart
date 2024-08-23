@@ -1,3 +1,4 @@
+import 'package:coco/bankdetails.dart';
 import 'package:flutter/material.dart';
 import 'addbank.dart';
 class MyBanksPage extends StatelessWidget{
@@ -20,13 +21,21 @@ class MyBanksPage extends StatelessWidget{
                 //Redirect to Add Wallet form
               }, child: const Text("Add Bank"),
               ),
-              const Card(
+        InkWell(
+          onTap:(){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=> const BankDetailsPage(bankName: "bankName", accountNumber: "1234365", accountType: "accountType", balance: 21435))
+            );
+          },
+              child: const Card(
                 child: SizedBox(
                   width: 100,
                   height: 100,
                   child: Text("Bank Name"),
                 ),
               ),
+        ),
             ],
           )
       ),

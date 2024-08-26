@@ -1,3 +1,4 @@
+import 'package:coco/alltransactions.dart';
 import 'package:coco/mybanks.dart';
 import 'package:coco/mywallets.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
                 onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context)=> AllTransactionsPage()),
+                  );
                   //ADD TRANSACTIONS PAGE
                 },
                 child: const Text('My Transactions')

@@ -100,10 +100,10 @@ class BankDetailsPage extends StatelessWidget {
               onPressed: () {
                 // Add functionality to delete the bank
               },
-              child: const Text("Delete Bank"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Set delete button color to red
               ),
+              child: const Text("Delete Bank"),
             ),
           ],
         ),

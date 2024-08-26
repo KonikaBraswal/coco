@@ -6,7 +6,7 @@ class AddWalletPage extends StatelessWidget{
   @override
 
   Widget build(BuildContext context) {
-    final _formKey=GlobalKey<FormState>();
+    final formKey=GlobalKey<FormState>();
   return Scaffold(
     appBar: AppBar(
       title: const Text("Add Wallet"),
@@ -14,7 +14,7 @@ class AddWalletPage extends StatelessWidget{
     body: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Form(
-        key: _formKey,
+        key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -73,7 +73,7 @@ class AddWalletPage extends StatelessWidget{
             
             ElevatedButton(onPressed: (){
               //ADD CODE TO DATABASE
-              if(_formKey.currentState?.validate()??false){
+              if(formKey.currentState?.validate()??false){
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Submitted")),
                 );

@@ -95,10 +95,10 @@ class WalletDetailsPage extends StatelessWidget {
               onPressed: () {
                 // Add functionality to delete the wallet
               },
-              child: const Text("Delete Wallet"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Set delete button color to red
               ),
+              child: const Text("Delete Wallet"),
             ),
           ],
         ),

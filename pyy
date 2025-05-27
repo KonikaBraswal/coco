@@ -1,0 +1,120 @@
+class Account:
+    _account_number_counter = 1000
+
+    def __init__(self, name):
+        self.name = name.strip().title()
+        self.account_number = Account._account_number_counter
+        self.balance = 0.0
+        Account._account_number_counter += 1
+
+    def display(self):
+        print(f"""
+        📄 Account Details:
+        -----------------------
+        👤 Name: {self.name}
+        🔢 Account Number: {self.account_number}
+        💰 Balance: ${self.balance:.2f}
+        """)
+2.
+
+
+class Bank:
+    def __init__(self):
+        self.accounts = {}
+
+    def _get_account(self, prompt="Enter account number: "):
+        try:
+            acc_no = int(input(prompt))
+            account = self.accounts.get(acc_no)
+            if account:
+                return account
+            else:
+                print("❌ Account not found.")
+        except ValueError:
+            print("⚠️ Invalid input. Please enter numbers only.")
+        return None
+
+    def create_account(self):
+        name = input("Enter account holder's name: ").strip()
+        if not name:
+            print("⚠️ Name cannot be empty.")
+            return
+        account = Account(name)
+        self.accounts[account.account_number] = account
+        print("✅ Account has been created successfully.")
+        account.display()
+
+    def view_account(self):
+        account = self._get_account()
+        if account:
+            account.display()
+
+    def deposit_cash(self):
+        account = self._get_account()
+        if not account:
+            return
+        try:
+            amount = float(input("Enter amount to deposit: $"))
+            if amount <= 0:
+                print("⚠️ Amount must be greater than zero.")
+                return
+            account.balance += amount
+            print(f"✅ ${amount:.2f} deposited successfully.")
+            account.display()
+        except ValueError:
+            print("⚠️ Invalid amount.")
+
+    def withdraw_cash(self):
+        account = self._get_account()
+        if not account:
+            return
+        try:
+            amount = float(input("Enter amount to withdraw: $"))
+            if amount <= 0:
+                print("⚠️ Amount must be greater than zero.")
+            elif amount > account.balance:
+                print("❌ Insufficient balance.")
+            else:
+                account.balance -= amount
+                print(f"✅ ${amount:.2f} withdrawn successfully.")
+                account.display()
+        except ValueError:
+            print("⚠️ Invalid amount.")
+
+    def show_menu(self):
+        print("""
+        🏦 ----- Banking System Menu -----
+        1. ➕ Create a new account
+        2. 🔍 View account details
+        3. 💵 Deposit cash
+        4. 💸 Withdraw cash
+        5. 🚪 Quit
+        """)
+
+    def run(self):
+        while True:
+            self.show_menu()
+            choice = input("Enter your choice (1-5): ").strip()
+            actions = {
+                '1': self.create_account,
+                '2': self.view_account,
+                '3': self.deposit_cash,
+                '4': self.withdraw_cash,
+                '5': lambda: print("👋 Thank you for using the banking system.")
+            }
+
+            action = actions.get(choice)
+            if action:
+                if choice == '5':
+                    break
+                action()
+            else:
+                print("⚠️ Invalid choice. Please try again.")
+
+
+
+3.
+
+
+bank = Bank()
+bank.run()
